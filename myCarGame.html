@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<title>My Car Game</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+
+	<h1>Press w, a, t, or b key to Play!</h1>
+	<h2>Mileage:<span id="mileage-text"><strong>0</strong></span></h2>
+
+	<script type="text/javascript">
+
+	var mileageText = document.getElementById("mileage-text");
+
+	var car = {
+		mileage: 3000,
+		make: "Mazda",
+		color: "Black",
+		model: "Milennia",
+		isWorking: true,
+
+		isDrivable: function() {
+			if (! this.isWorking || this.mileage >= 7000){
+				alert("Your car is undriveable!")
+			// return false;		
+		}
+		},
+		driveToWork: function() {
+
+			if (this.isWorking) {
+
+			alert( "Old Mileage: " + this.mileage);
+
+			this.mileage = this.mileage + 9;
+
+			alert( "New Mileage: " + this.mileage);
+			}
+			else {alert("Car needs a tuneup!")}
+		},
+				
+
+		driveAroundTheWorld: function() {
+			if (this.isWorking){
+				alert("Old Mileage " + this.mileage);
+				this.mileage = this.mileage + 10000;
+				alert("New Mileage " + this.mileage);
+				this.isWorking = false;
+			}
+			else {alert("Car needs a tuneup!");}
+
+		},
+
+		resetMileage: function(){
+          alert("Mileage Reset!");
+          this.mileage = this.mileage * 0;
+
+        },
+		getTuneUp: function() {
+			alert("Car is good to go!")
+			this.isWorking = true;
+		},
+
+		honk: function(){
+			if (this.isWorking){
+			alert("Honk Honk!!")
+			}
+		},
+
+		rewriteStats: function() {
+			if (this.isWorking) {
+			 mileageText.textContent = this.mileage;
+				if(this.isWorking){
+					alert("Your car is working!")}
+				else{
+					console.log("Your car is not working!") ;
+					mileageText.textContent = this.mileage}
+				}
+				
+			}
+};
+	
+	document.body.onkeyup = function(e){
+
+		if (e.keyCode == 87){
+			car.driveToWork();
+			//pushing the w
+		}
+
+		if (e.keyCode == 65){
+			car.driveAroundTheWorld();
+			//pushing the a
+		}
+		if (e.keyCode == 84){
+			car.getTuneUp();
+			//pushing the t
+		}
+		if (e.keyCode == 72){
+			car.honk();
+			//pushing the h
+		}
+		if(e.keyCode == 82){
+	    // Pressing r:
+	    car.resetMileage();
+		}
+
+		if (e.keyCode == 87 || e.keyCode == 65 || e.keyCode == 84 || e.keyCode == 72 || e.keyCode == 82){
+			car.rewriteStats();
+			//pushing any key
+		}
+		
+		
+	}
+
+	</script>
+
+	
+
+</body>
+</html>
